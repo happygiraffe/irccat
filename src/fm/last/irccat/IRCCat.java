@@ -129,6 +129,7 @@ public class IRCCat extends PircBot {
 		return maxCmdResponseLines;
 	}
 
+    @Override
 	protected void onDisconnect(){
 		try{
 			reconnect();
@@ -138,6 +139,7 @@ public class IRCCat extends PircBot {
 	}
 
 	@SuppressWarnings("unchecked")
+    @Override
 	protected void onConnect() {
 
 		// join channels
@@ -168,6 +170,7 @@ public class IRCCat extends PircBot {
 	}
 
 	// PM was sent to us on irc
+    @Override
 	public void onPrivateMessage(String sender, String login, String hostname,
 			String message) {
 		handleMessage(null, sender, message);
@@ -178,11 +181,13 @@ public class IRCCat extends PircBot {
 	}
 
 	// message sent to our channel
+    @Override
 	public void onMessage(String channel_, String sender, String login,
 			String hostname, String message) {
 		handleMessage(channel_, sender, message);
 	}
 
+    @Override
 	public void onPart(String _channel, String _sender, String _login,
 			String _hostname) {
 		if (!_sender.equals(nick))
@@ -191,6 +196,7 @@ public class IRCCat extends PircBot {
 		// System.exit(-1);
 	}
 
+    @Override
 	public void onQuit(String _sourceNick, String _sourceLogin,
 			String _sourceHostname, String _reason) {
 		if (!_sourceNick.equals(nick))
@@ -199,6 +205,7 @@ public class IRCCat extends PircBot {
 		System.exit(-1);
 	}
 
+    @Override
 	public void onKick(String channel_, String kickerNick, String kickerLogin,
 			String kickerHostname, String recipientNick, String reason) {
 		if (!recipientNick.equals(nick))
